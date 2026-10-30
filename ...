@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kim Ngân | Personal Space & Music</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            400: '#f472b6',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            700: '#be185d',
+                        },
+                        spotify: {
+                            green: '#1DB954',
+                            dark: '#121212',
+                            card: '#181818'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+    </style>
+</head>
+<body class="bg-rose-50/30 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
+
+    <!-- Copy Code Floating Banner -->
+    <div class="bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 text-white text-xs md:text-sm py-2 px-4 text-center font-medium sticky top-0 z-50 shadow-md flex items-center justify-between">
+        <span class="truncate">✨ Bấm nút bên để copy mã nguồn dán vào file <code class="bg-white/20 px-1.5 py-0.5 rounded font-mono text-xs">index.html</code> trên GitHub!</span>
+        <button onclick="copyWholeSourceCode()" class="bg-white text-slate-900 hover:bg-slate-100 px-3 py-1 rounded-full text-xs font-semibold shadow transition-all duration-200 flex items-center gap-1.5 shrink-0 ml-2">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span id="copyBtnText">Copy HTML</span>
+        </button>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-8 z-40 max-w-5xl mx-auto px-4 mt-2">
+        <nav class="glass border border-pink-100/80 dark:border-slate-800/80 rounded-2xl px-5 py-3 flex items-center justify-between shadow-lg shadow-pink-100/40 dark:shadow-none">
+            <!-- Logo / Name -->
+            <a href="#" class="text-xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                Kim Ngân<span class="text-brand-500">.</span>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="#about" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors" data-i18n="nav-about">Giới thiệu</a>
+                <a href="#music" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors" data-i18n="nav-music">Spotify Playlist</a>
+                <a href="#passions" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors" data-i18n="nav-passions">Sở thích</a>
+                <a href="#contact" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors" data-i18n="nav-contact">Liên hệ</a>
+            </div>
+
+            <!-- Utilities: Dark Mode & Language -->
+            <div class="flex items-center gap-3">
+                <!-- Language Toggle -->
+                <button onclick="toggleLanguage()" class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-pink-200 dark:border-slate-700 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all">
+                    <span id="langLabel">EN</span>
+                </button>
+
+                <!-- Theme Toggle -->
+                <button onclick="toggleDarkMode()" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all">
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 pt-12 pb-24 space-y-24">
+
+        <!-- Hero Section -->
+        <section class="flex flex-col-reverse md:flex-row items-center justify-between gap-12 pt-8">
+            <div class="flex-1 space-y-6 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-brand-100/70 text-brand-700 dark:bg-brand-500/10 dark:text-brand-400 border border-brand-200 dark:border-brand-500/20">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                    </span>
+                    <span data-i18n="hero-badge">Welcome to my personal corner 🌸</span>
+                </div>
+
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+                    <span data-i18n="hero-greeting">Xin chào, mình là</span> <br>
+                    <span class="bg-gradient-to-r from-brand-600 via-rose-500 to-purple-600 bg-clip-text text-transparent">
+                        Kim Ngân
+                    </span>
+                </h1>
+
+                <p class="text-slate-600 dark:text-slate-400 text-base md:text-lg max-w-xl leading-relaxed" data-i18n="hero-desc">
+                    Yêu âm nhạc, thích chụp ảnh, chill cùng những giai điệu Spotify mộng mơ và khám phá những điều ngọt ngào trong cuộc sống.
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
+                    <a href="#music" class="px-6 py-3 rounded-xl bg-spotify-green hover:bg-emerald-600 text-white font-medium text-sm transition-all shadow-lg shadow-emerald-500/20 flex items-center gap-2">
+                        <i data-lucide="music" class="w-4 h-4"></i>
+                        <span data-i18n="btn-music">Nghe nhạc cùng Ngân</span>
+                    </a>
+                    <a href="#contact" class="px-6 py-3 rounded-xl bg-white dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-slate-700 border border-pink-200 dark:border-slate-700 font-medium text-sm transition-all flex items-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span data-i18n="btn-contact">Trò chuyện</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Avatar -->
+            <div class="relative group">
+                <div class="absolute -inset-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse"></div>
+                <img src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&q=80&w=600" 
+                     alt="Kim Ngân Starry Sky" 
+                     class="relative rounded-full w-56 h-56 md:w-64 md:h-64 object-cover border-4 border-white dark:border-slate-900 shadow-2xl">
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="space-y-8">
+            <div class="text-center md:text-left space-y-2">
+                <h2 class="text-2xl md:text-3xl font-bold" data-i18n="about-title">Giới thiệu về Ngân</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm" data-i18n="about-sub">Một chút về tính cách và phong cách sống</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-pink-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-pink-100 dark:bg-pink-500/20 text-brand-600 dark:text-brand-400 flex items-center justify-center mb-4">
+                        <i data-lucide="headphones" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2" data-i18n="about-c1-title">Music Enthusiast</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="about-c1-desc">
+                        Âm nhạc là một phần không thể thiếu mỗi ngày. Ngân thích nghe Indie, Pop acoustic, Lo-fi và R&B ngọt ngào.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-pink-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-4">
+                        <i data-lucide="camera" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2" data-i18n="about-c2-title">Chụp ảnh & Lifestyle</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="about-c2-desc">
+                        Yêu thích việc ghi lại những khoảnh khắc đời thường, góc cà phê xinh xắn và những chuyến đi đáng nhớ.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-pink-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-rose-100 dark:bg-rose-500/20 text-rose-600 dark:text-rose-400 flex items-center justify-center mb-4">
+                        <i data-lucide="sparkles" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2" data-i18n="about-c3-title">Tích cực & Tinh tế</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="about-c3-desc">
+                        Thích sự yên bình, luôn hướng tới năng lượng tích cực và tạo dựng niềm vui từ những điều giản dị nhất.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spotify Albums / Playlists Section -->
+        <section id="music" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div class="space-y-2">
+                    <div class="inline-flex items-center gap-2 text-spotify-green font-semibold text-xs tracking-wider uppercase">
+                        <i data-lucide="disc" class="w-4 h-4 animate-spin" style="animation-duration: 8s;"></i>
+                        <span>Spotify Favorite Tracks</span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold" data-i18n="music-title">Spotify Albums & Playlists yêu thích</h2>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm" data-i18n="music-sub">Thưởng thức trực tiếp những giai điệu cùng Kim Ngân</p>
+                </div>
+                <a href="https://open.spotify.com" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-spotify-green/10 text-spotify-green hover:bg-spotify-green hover:text-white transition-all text-xs font-semibold self-start md:self-auto">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    <span>Mở Spotify</span>
+                </a>
+            </div>
+
+            <!-- Embedded Spotify Players Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Spotify Item 1 (Chill Hits / Pop) -->
+                <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-pink-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all space-y-3">
+                    <div class="flex items-center justify-between px-1">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="heart" class="w-4 h-4 text-rose-500 fill-rose-500"></i>
+                            <span class="font-semibold text-sm" data-i18n="sp1-label">Chill & Acoustic Chill</span>
+                        </div>
+                        <span class="text-xs text-slate-400">Daily Playlist</span>
+                    </div>
+                    <div class="rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800">
+                        <iframe style="border-radius:12px" 
+                                src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4WYpd332L25?utm_source=generator&theme=0" 
+                                width="100%" 
+                                height="152" 
+                                frameBorder="0" 
+                                allowfullscreen="" 
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                                loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Spotify Item 2 (Indie Vibe) -->
+                <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-pink-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all space-y-3">
+                    <div class="flex items-center justify-between px-1">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="radio" class="w-4 h-4 text-purple-500"></i>
+                            <span class="font-semibold text-sm" data-i18n="sp2-label">Indie & Night Vibes</span>
+                        </div>
+                        <span class="text-xs text-slate-400">Album</span>
+                    </div>
+                    <div class="rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800">
+                        <iframe style="border-radius:12px" 
+                                src="https://open.spotify.com/embed/playlist/37i9dQZF1DX2Nc3B9P2R32?utm_source=generator&theme=0" 
+                                width="100%" 
+                                height="152" 
+                                frameBorder="0" 
+                                allowfullscreen="" 
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                                loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Spotify Item 3 (Lofi Beats) -->
+                <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-pink-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all space-y-3">
+                    <div class="flex items-center justify-between px-1">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="coffee" class="w-4 h-4 text-amber-500"></i>
+                            <span class="font-semibold text-sm" data-i18n="sp3-label">Lofi Study & Work</span>
+                        </div>
+                        <span class="text-xs text-slate-400">Focus Music</span>
+                    </div>
+                    <div class="rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800">
+                        <iframe style="border-radius:12px" 
+                                src="https://open.spotify.com/embed/playlist/37i9dQZF1DX8Ueb1M31sR1?utm_source=generator&theme=0" 
+                                width="100%" 
+                                height="152" 
+                                frameBorder="0" 
+                                allowfullscreen="" 
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                                loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Spotify Item 4 (Top Tracks) -->
+                <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-pink-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all space-y-3">
+                    <div class="flex items-center justify-between px-1">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="sparkle" class="w-4 h-4 text-pink-500"></i>
+                            <span class="font-semibold text-sm" data-i18n="sp4-label">Sweet R&B & Soft Pop</span>
+                        </div>
+                        <span class="text-xs text-slate-400">Favorites</span>
+                    </div>
+                    <div class="rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800">
+                        <iframe style="border-radius:12px" 
+                                src="https://open.spotify.com/embed/playlist/37i9dQZF1DX6V1R1OA3y73?utm_source=generator&theme=0" 
+                                width="100%" 
+                                height="152" 
+                                frameBorder="0" 
+                                allowfullscreen="" 
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                                loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hobbies & Interests Section -->
+        <section id="passions" class="p-8 rounded-3xl bg-gradient-to-br from-pink-500 via-rose-500 to-purple-600 text-white shadow-xl relative overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-64 h-64 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
+            
+            <div class="relative z-10 max-w-2xl space-y-4">
+                <span class="text-xs font-uppercase tracking-wider uppercase bg-white/20 px-3 py-1 rounded-full" data-i18n="hobby-badge">Sở thích & Phong cách</span>
+                <h2 class="text-2xl md:text-3xl font-bold" data-i18n="hobby-title">Những góc nhỏ yêu thích của Kim Ngân</h2>
+                <p class="text-pink-50 text-sm md:text-base leading-relaxed opacity-95" data-i18n="hobby-desc">
+                    Ngoài thời gian đắm chìm vào âm nhạc, Ngân rất thích chụp ảnh film, thưởng thức matcha latte vào những chiều cuối tuần và viết lách ghi lại cảm xúc cá nhân.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl md:text-3xl font-bold" data-i18n="contact-title">Kết nối với Kim Ngân</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm" data-i18n="contact-sub">Gửi tin nhắn hoặc kết nối qua các mạng xã hội bên dưới nhé!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <!-- Info & Socials -->
+                <div class="space-y-6">
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-pink-100 dark:border-slate-800 space-y-4 shadow-sm">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-pink-100 dark:bg-pink-500/20 text-brand-600 dark:text-brand-400 flex items-center justify-center">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Email cá nhân</p>
+                                <p class="font-medium text-sm">kimngan.contact@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-pink-100 dark:bg-pink-500/20 text-brand-600 dark:text-brand-400 flex items-center justify-center">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Địa điểm</p>
+                                <p class="font-medium text-sm">Vietnam 🇻🇳</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Icons -->
+                    <div class="flex items-center justify-center md:justify-start gap-4">
+                        <a href="https://instagram.com" target="_blank" class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-pink-100 dark:border-slate-800 hover:text-brand-600 hover:border-brand-500 transition-all shadow-sm">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-pink-100 dark:border-slate-800 hover:text-brand-600 hover:border-brand-500 transition-all shadow-sm">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://spotify.com" target="_blank" class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-pink-100 dark:border-slate-800 hover:text-spotify-green hover:border-spotify-green transition-all shadow-sm">
+                            <i data-lucide="music" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-pink-100 dark:border-slate-800 hover:text-brand-600 hover:border-brand-500 transition-all shadow-sm">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Simple Contact Form -->
+                <form onsubmit="handleFormSubmit(event)" class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-pink-100 dark:border-slate-800 space-y-4 shadow-sm">
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 text-slate-600 dark:text-slate-300" data-i18n="form-name">Họ và Tên</label>
+                        <input type="text" required placeholder="Bạn tên là gì..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-rose-50/30 dark:bg-slate-950 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 text-slate-600 dark:text-slate-300" data-i18n="form-email">Email</label>
+                        <input type="email" required placeholder="email@gmail.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-rose-50/30 dark:bg-slate-950 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 text-slate-600 dark:text-slate-300" data-i18n="form-msg">Lời nhắn gửi Kim Ngân</label>
+                        <textarea rows="4" required placeholder="Nhập tin nhắn..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-rose-50/30 dark:bg-slate-950 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm transition-all shadow-md shadow-brand-500/20">
+                        <span data-i18n="form-btn">Gửi tin nhắn</span>
+                    </button>
+                    <p id="formStatus" class="text-xs text-center text-emerald-500 hidden" data-i18n="form-success">Cảm ơn bạn! Tin nhắn đã gửi thành công.</p>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-pink-100 dark:border-slate-800 py-8 text-center text-xs text-slate-500">
+        <p>© 2026 Kim Ngân. Built with ❤️ for GitHub Pages.</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Dark Mode Logic
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        // Multilingual Dictionary
+        const i18n = {
+            vi: {
+                "nav-about": "Giới thiệu",
+                "nav-music": "Spotify Playlist",
+                "nav-passions": "Sở thích",
+                "nav-contact": "Liên hệ",
+                "hero-badge": "Welcome to my personal corner 🌸",
+                "hero-greeting": "Xin chào, mình là",
+                "hero-desc": "Yêu âm nhạc, thích chụp ảnh, chill cùng những giai điệu Spotify mộng mơ và khám phá những điều ngọt ngào trong cuộc sống.",
+                "btn-music": "Nghe nhạc cùng Ngân",
+                "btn-contact": "Trò chuyện",
+                "about-title": "Giới thiệu về Ngân",
+                "about-sub": "Một chút về tính cách và phong cách sống",
+                "about-c1-title": "Music Enthusiast",
+                "about-c1-desc": "Âm nhạc là một phần không thể thiếu mỗi ngày. Ngân thích nghe Indie, Pop acoustic, Lo-fi và R&B ngọt ngào.",
+                "about-c2-title": "Chụp ảnh & Lifestyle",
+                "about-c2-desc": "Yêu thích việc ghi lại những khoảnh khắc đời thường, góc cà phê xinh xắn và những chuyến đi đáng nhớ.",
+                "about-c3-title": "Tích cực & Tinh tế",
+                "about-c3-desc": "Thích sự yên bình, luôn hướng tới năng lượng tích cực và tạo dựng niềm vui từ những điều giản dị nhất.",
+                "music-title": "Spotify Albums & Playlists yêu thích",
+                "music-sub": "Thưởng thức trực tiếp những giai điệu cùng Kim Ngân",
+                "sp1-label": "Chill & Acoustic Chill",
+                "sp2-label": "Indie & Night Vibes",
+                "sp3-label": "Lofi Study & Work",
+                "sp4-label": "Sweet R&B & Soft Pop",
+                "hobby-badge": "Sở thích & Phong cách",
+                "hobby-title": "Những góc nhỏ yêu thích của Kim Ngân",
+                "hobby-desc": "Ngoài thời gian đắm chìm vào âm nhạc, Ngân rất thích chụp ảnh film, thưởng thức matcha latte vào những chiều cuối tuần và viết lách ghi lại cảm xúc cá nhân.",
+                "contact-title": "Kết nối với Kim Ngân",
+                "contact-sub": "Gửi tin nhắn hoặc kết nối qua các mạng xã hội bên dưới nhé!",
+                "form-name": "Họ và Tên",
+                "form-email": "Email",
+                "form-msg": "Lời nhắn gửi Kim Ngân",
+                "form-btn": "Gửi tin nhắn",
+                "form-success": "Cảm ơn bạn! Tin nhắn đã gửi thành công."
+            },
+            en: {
+                "nav-about": "About",
+                "nav-music": "Spotify Playlist",
+                "nav-passions": "Hobbies",
+                "nav-contact": "Contact",
+                "hero-badge": "Welcome to my personal corner 🌸",
+                "hero-greeting": "Hello, I am",
+                "hero-desc": "Music lover, photography enthusiast, chilling to dreamy Spotify vibes and finding sweet moments in life.",
+                "btn-music": "Listen with me",
+                "btn-contact": "Let's Talk",
+                "about-title": "About Kim Ngan",
+                "about-sub": "A glimpse into my personality and lifestyle",
+                "about-c1-title": "Music Enthusiast",
+                "about-c1-desc": "Music is an essential part of my day. I love Indie, Acoustic Pop, Lo-fi, and sweet R&B tracks.",
+                "about-c2-title": "Photography & Life",
+                "about-c2-desc": "Capturing daily moments, cozy coffee corners, and memorable trips.",
+                "about-c3-title": "Positive & Gentle",
+                "about-c3-desc": "Enjoying peace, aiming for positive energy, and finding joy in simple things.",
+                "music-title": "Favorite Spotify Playlists & Albums",
+                "music-sub": "Enjoy tunes directly with Kim Ngan",
+                "sp1-label": "Chill & Acoustic Chill",
+                "sp2-label": "Indie & Night Vibes",
+                "sp3-label": "Lofi Study & Work",
+                "sp4-label": "Sweet R&B & Soft Pop",
+                "hobby-badge": "Interests & Lifestyle",
+                "hobby-title": "Kim Ngan's Favorite Corners",
+                "hobby-desc": "Besides music, I love film photography, sipping matcha lattes on weekend afternoons, and journaling.",
+                "contact-title": "Connect with Kim Ngan",
+                "contact-sub": "Send a message or reach out on social media!",
+                "form-name": "Full Name",
+                "form-email": "Email",
+                "form-msg": "Message for Ngan",
+                "form-btn": "Send Message",
+                "form-success": "Thank you! Message sent successfully."
+            }
+        };
+
+        let currentLang = 'vi';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'vi' ? 'en' : 'vi';
+            document.getElementById('langLabel').innerText = currentLang === 'vi' ? 'EN' : 'VI';
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[currentLang][key]) {
+                    el.innerText = i18n[currentLang][key];
+                }
+            });
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const status = document.getElementById('formStatus');
+            status.classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => {
+                status.classList.add('hidden');
+            }, 4000);
+        }
+
+        // Copy Code to Clipboard
+        function copyWholeSourceCode() {
+            const htmlCode = document.documentElement.outerHTML;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = htmlCode;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const btnText = document.getElementById('copyBtnText');
+            btnText.innerText = 'Đã chép!';
+            setTimeout(() => {
+                btnText.innerText = 'Copy HTML';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
